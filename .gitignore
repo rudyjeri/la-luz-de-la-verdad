@@ -1,0 +1,15 @@
+# Dependencies
+node_modules/
+frontend/node_modules/
+
+# Build caches
+.DS_Store
+Thumbs.db
+*.log
+.env
+.env.*
+!.env.example
+
+# Editor
+.vscode/
+.idea/

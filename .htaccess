@@ -1,0 +1,10 @@
+# Establecer index.html como archivo por defecto
+DirectoryIndex index.html
+
+# Activar mod_rewrite para URLs limpias
+RewriteEngine On
+
+# Redirigir URLs sin .html a sus archivos reales
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME}\.html -f
+RewriteRule ^([^\.]+)$ $1.html [NC,L]

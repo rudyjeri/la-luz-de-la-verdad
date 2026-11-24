@@ -1,0 +1,90 @@
+.resources-page {
+  padding-bottom: 5rem;
+}
+
+.hero-resources {
+  margin: 1.5rem;
+}
+
+.hero__container_resources {
+  min-height: 50vh;
+  border-radius: 2rem;
+  background-image: linear-gradient(rgba(15, 23, 42, 0.7), rgba(15, 23, 42, 0.7)), url('/images/biblia-fisica-telefono.jpg');
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: var(--white);
+  text-align: center;
+  padding: 0 2rem;
+}
+
+.resources-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.resource-item-card {
+  background: var(--white);
+  padding: 2.5rem;
+  border-radius: 1.5rem;
+  box-shadow: var(--shadow-md);
+  text-align: center;
+  transition: all 0.3s ease;
+  border: 1px solid rgba(0,0,0,0.05);
+}
+
+.resource-item-card:hover {
+  transform: translateY(-10px);
+  box-shadow: var(--shadow-lg);
+}
+
+.resource-icon {
+  font-size: 3.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.resource-item-card h3 {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  color: var(--primary);
+}
+
+.resource-item-card p {
+  color: var(--text-muted);
+  margin-bottom: 1.5rem;
+}
+
+.resource-list {
+  list-style: none;
+  text-align: left;
+  margin-bottom: 2rem;
+}
+
+.resource-list li {
+  padding: 0.5rem 0;
+  color: var(--text-main);
+  font-weight: 500;
+  border-bottom: 1px outline rgba(0,0,0,0.05);
+}
+
+.download-btn {
+  background: var(--primary);
+  color: var(--white);
+  border: none;
+  padding: 0.8rem 1.5rem;
+  border-radius: 10px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  width: 100%;
+}
+
+.download-btn:hover {
+  background: var(--accent);
+  color: var(--primary);
+}

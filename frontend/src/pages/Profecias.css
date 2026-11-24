@@ -1,0 +1,22 @@
+.prophecy-page {
+  padding-bottom: 5rem;
+}
+
+.hero-prophecy {
+  margin: 1.5rem;
+}
+
+.hero__container_prophecy {
+  min-height: 50vh;
+  border-radius: 2rem;
+  background-image: linear-gradient(rgba(15, 23, 42, 0.75), rgba(15, 23, 42, 0.75)), url('/images/DALL·E-2024-09-25-19.13.32-A-powerful-apocalyptic-scene-with-four-symbolic-beasts-representing-nations-in-the-end-times-prophecy.-A-lion-with-wings-representing-England-stands-m-1024x585.webp');
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: var(--white);
+  text-align: center;
+  padding: 0 2rem;
+}

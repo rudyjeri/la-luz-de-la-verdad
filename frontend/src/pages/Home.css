@@ -18,7 +18,7 @@
 }
 
 .hero__title {
-  font-size: clamp(2.5rem, 6vw, 4.5rem);
+  font-size: clamp(2.1rem, 7vw, 4.5rem);
   line-height: 1.1;
   max-width: 800px;
   margin-bottom: 1.5rem;
@@ -33,7 +33,7 @@
 }
 
 .hero__paragraph {
-  font-size: clamp(1.1rem, 2vw, 1.4rem);
+  font-size: clamp(1rem, 3.4vw, 1.4rem);
   max-width: 600px;
   color: rgba(255, 255, 255, 0.9);
   margin-bottom: 2rem;
@@ -159,4 +159,66 @@
 @media (max-width: 1024px) {
   .info-block { flex-direction: column; gap: 3rem; padding: 4rem 5%; }
   .info-block img { width: 100%; }
+}
+
+/* Móvil: hero a casi todo el ancho (antes se veía “encogido”) */
+@media (max-width: 768px) {
+  .hero-inicio {
+    margin: 0.65rem 0.65rem 1rem;
+  }
+
+  .hero__container_inicio {
+    min-height: min(78vh, 640px);
+    border-radius: 1.25rem;
+    padding: 2.25rem 1.25rem;
+    justify-content: flex-end;
+    background-image: linear-gradient(to top, rgba(15, 23, 42, 0.92) 18%, rgba(15, 23, 42, 0.35) 55%, rgba(15, 23, 42, 0.15)), url('/images/hero-bg.png');
+  }
+
+  .hero__title {
+    margin-bottom: 0.85rem;
+  }
+
+  .hero__paragraph {
+    margin-bottom: 0.25rem;
+    line-height: 1.55;
+  }
+
+  .trending-section {
+    padding: 3rem 1.1rem;
+  }
+
+  .trending-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.75rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .trending-header h2 {
+    font-size: 1.55rem;
+  }
+
+  .info-block {
+    padding: 3rem 1.1rem;
+  }
+
+  .info-text h2 {
+    font-size: 1.7rem;
+  }
+
+  .info-text p {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 420px) {
+  .hero-inicio {
+    margin: 0.4rem 0.4rem 0.85rem;
+  }
+
+  .hero__container_inicio {
+    border-radius: 1rem;
+    padding: 1.75rem 1rem 1.5rem;
+  }
 }

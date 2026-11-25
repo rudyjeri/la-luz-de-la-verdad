@@ -1,100 +1,136 @@
-import { useEffect, useState } from 'react';
-import { resourceCategories, type ResourceCategory } from '../data/resources';
+import { useEffect, useMemo, useState } from 'react';
+import {
+  resourceCategories,
+  totalResourceCount,
+  type ResourceCategory,
+  type ResourceFile,
+} from '../data/resources';
 import './Recursos.css';
 
 const Recursos = () => {
   const [active, setActive] = useState(false);
-  const [openId, setOpenId] = useState<string | null>(resourceCategories[0]?.id ?? null);
+  const [activeId, setActiveId] = useState(resourceCategories[0]?.id ?? 'guias');
 
   useEffect(() => {
     setActive(true);
   }, []);
 
-  const toggleCategory = (category: ResourceCategory) => {
-    setOpenId((prev) => (prev === category.id ? null : category.id));
+  useEffect(() => {
+    const hash = window.location.hash.replace('#', '');
+    if (hash && resourceCategories.some((c) => c.id === hash)) {
+      setActiveId(hash);
+    }
+  }, []);
+
+  const category = useMemo(
+    () => resourceCategories.find((c) => c.id === activeId) ?? resourceCategories[0],
+    [activeId],
+  );
+
+  const selectCategory = (cat: ResourceCategory) => {
+    setActiveId(cat.id);
+    window.history.replaceState(null, '', `#${cat.id}`);
   };
 
   return (
     <div className="resources-page">
       <header className="hero hero-resources">
         <section className="hero__container_resources">
-          <h1 className={`hero__title ${active ? 'active' : ''}`}>Recursos Gratuitos</h1>
+          <p className={`resources-kicker ${active ? 'active' : ''}`}>Biblioteca gratuita</p>
+          <h1 className={`hero__title ${active ? 'active' : ''}`}>Recursos</h1>
           <p className={`hero__paragraph ${active ? 'active' : ''}`}>
-            &quot;De gracia recibisteis, dad de gracia.&quot; Mateo 10:8
+            Guías, presentaciones y lecturas para estudiar y compartir la Palabra.
+          </p>
+          <p className={`resources-verse ${active ? 'active' : ''}`}>
+            «De gracia recibisteis, dad de gracia.» — Mateo 10:8
           </p>
         </section>
       </header>
 
-      <main>
-        <section className="container about">
-          <p className="about__paragraph">
-            Ponemos a tu disposición una colección seleccionada de materiales para el estudio personal,
-            la predicación y el compartir con otros. Todos nuestros recursos son de libre distribución.
-          </p>
-        </section>
+      <main className="resources-main">
+        <div className="resources-shell container">
+          <div className="resources-summary">
+            <div>
+              <h2>Elige una categoría</h2>
+              <p>{totalResourceCount()} materiales listos para descargar o abrir.</p>
+            </div>
+          </div>
 
-        <section className="resources-grid container">
-          {resourceCategories.map((res) => {
-            const isOpen = openId === res.id;
-            return (
-              <div
-                key={res.id}
-                id={res.id}
-                className={`resource-item-card ${isOpen ? 'resource-item-card--open' : ''}`}
-              >
-                <div className="resource-icon" aria-hidden="true">{res.icon}</div>
-                <h3>{res.title}</h3>
-                <p>{res.description}</p>
-                <ul className="resource-list">
-                  {res.files.slice(0, 3).map((file) => (
-                    <li key={file.id}>• {file.title}</li>
-                  ))}
-                  {res.files.length > 3 && (
-                    <li className="resource-list__more">+ {res.files.length - 3} más</li>
-                  )}
-                </ul>
+          <nav className="resources-tabs" aria-label="Categorías de recursos">
+            {resourceCategories.map((cat) => {
+              const isActive = cat.id === activeId;
+              return (
                 <button
+                  key={cat.id}
                   type="button"
-                  className="download-btn"
-                  aria-expanded={isOpen}
-                  aria-controls={`files-${res.id}`}
-                  onClick={() => toggleCategory(res)}
+                  className={`resources-tab ${isActive ? 'is-active' : ''}`}
+                  aria-pressed={isActive}
+                  onClick={() => selectCategory(cat)}
                 >
-                  {isOpen ? 'Ocultar archivos' : `Explorar ${res.title}`}
+                  <span className="resources-tab__label">{cat.shortTitle}</span>
+                  <span className="resources-tab__count">{cat.files.length}</span>
                 </button>
+              );
+            })}
+          </nav>
 
-                {isOpen && (
-                  <div id={`files-${res.id}`} className="resource-files">
-                    {res.files.map((file) => (
-                      <article key={file.id} className="resource-file">
-                        <div className="resource-file__info">
-                          <h4>{file.title}</h4>
-                          {file.description && <p>{file.description}</p>}
-                          <span className="resource-file__meta">
-                            {file.format}
-                            {file.sizeLabel ? ` · ${file.sizeLabel}` : ''}
-                          </span>
-                        </div>
-                        <a
-                          className="resource-file__btn"
-                          href={file.href}
-                          download={file.external ? undefined : true}
-                          target={file.external ? '_blank' : undefined}
-                          rel={file.external ? 'noopener noreferrer' : undefined}
-                        >
-                          {file.external ? 'Abrir' : 'Descargar'}
-                        </a>
-                      </article>
-                    ))}
-                  </div>
-                )}
-              </div>
-            );
-          })}
-        </section>
+          {category && (
+            <section className="resources-panel" aria-labelledby="resources-panel-title">
+              <header className="resources-panel__head">
+                <div>
+                  <p className="resources-panel__eyebrow">{category.audience}</p>
+                  <h3 id="resources-panel-title">{category.title}</h3>
+                  <p className="resources-panel__desc">{category.description}</p>
+                </div>
+              </header>
+
+              <ul className="resources-list">
+                {category.files.map((file, index) => (
+                  <li key={file.id}>
+                    <ResourceRow file={file} index={index + 1} />
+                  </li>
+                ))}
+              </ul>
+            </section>
+          )}
+
+          <aside className="resources-note">
+            <strong>Libre distribución.</strong> Puedes descargar, estudiar y compartir estos
+            materiales con tu iglesia o grupo de estudio.
+          </aside>
+        </div>
       </main>
     </div>
   );
 };
+
+function ResourceRow({ file, index }: { file: ResourceFile; index: number }) {
+  return (
+    <article className="resource-row">
+      <div className="resource-row__index" aria-hidden="true">
+        {String(index).padStart(2, '0')}
+      </div>
+      <div className="resource-row__body">
+        <div className="resource-row__top">
+          <h4>{file.title}</h4>
+          <span className={`resource-badge resource-badge--${file.format.toLowerCase()}`}>
+            {file.format}
+          </span>
+        </div>
+        {file.description && <p>{file.description}</p>}
+        {file.sizeLabel && <span className="resource-row__size">{file.sizeLabel}</span>}
+      </div>
+      <a
+        className="resource-row__action"
+        href={file.href}
+        download={file.external ? undefined : true}
+        target={file.external ? '_blank' : undefined}
+        rel={file.external ? 'noopener noreferrer' : undefined}
+      >
+        {file.external ? 'Abrir' : 'Descargar'}
+      </a>
+    </article>
+  );
+}
 
 export default Recursos;

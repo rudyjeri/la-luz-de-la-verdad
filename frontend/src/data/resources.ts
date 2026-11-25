@@ -12,17 +12,49 @@ export type ResourceFile = {
 export type ResourceCategory = {
   id: string;
   title: string;
+  shortTitle: string;
   description: string;
-  icon: string;
+  audience: string;
   files: ResourceFile[];
 };
 
 export const resourceCategories: ResourceCategory[] = [
   {
+    id: 'guias',
+    title: 'Guías de estudio',
+    shortTitle: 'Guías',
+    description: 'Lecciones paso a paso para estudio personal o en grupo.',
+    audience: 'Para estudiar',
+    files: [
+      {
+        id: 'daniel',
+        title: 'Curso Daniel',
+        description: '5 lecciones con lecturas y preguntas.',
+        href: '/recursos/guias/curso-daniel.pdf',
+        format: 'PDF',
+      },
+      {
+        id: 'apocalipsis',
+        title: 'Curso Apocalipsis',
+        description: '6 lecciones centradas en Cristo y la esperanza.',
+        href: '/recursos/guias/curso-apocalipsis.pdf',
+        format: 'PDF',
+      },
+      {
+        id: 'fe-jesus',
+        title: 'La Fe de Jesús',
+        description: 'Justificación por la fe y obediencia en amor.',
+        href: '/recursos/guias/la-fe-de-jesus.pdf',
+        format: 'PDF',
+      },
+    ],
+  },
+  {
     id: 'presentaciones',
-    title: 'Presentaciones PPTX',
-    description: 'Material visual para estudios bíblicos y conferencias.',
-    icon: '📊',
+    title: 'Presentaciones y bosquejos',
+    shortTitle: 'Presentaciones',
+    description: 'Material visual y esquemas para predicar o enseñar.',
+    audience: 'Para predicar',
     files: [
       {
         id: 'idolatria',
@@ -50,68 +82,44 @@ export const resourceCategories: ResourceCategory[] = [
   },
   {
     id: 'libros',
-    title: 'Libros y PDF',
-    description: 'Guías de lectura y acceso a libros clásicos gratuitos.',
-    icon: '📚',
+    title: 'Libros y lecturas',
+    shortTitle: 'Libros',
+    description: 'Guías de lectura y acceso a obras clásicas gratuitas.',
+    audience: 'Para leer',
     files: [
       {
-        id: 'conflicto-guia',
-        title: 'El Conflicto de los Siglos — Guía de lectura',
-        description: 'Plan temático para estudiar el libro.',
-        href: '/recursos/libros/el-conflicto-de-los-siglos-guia.pdf',
-        format: 'PDF',
-      },
-      {
-        id: 'deseado-guia',
-        title: 'El Deseado de Todas las Gentes — Guía de lectura',
-        description: 'Ruta de 5 semanas sobre la vida de Jesús.',
-        href: '/recursos/libros/el-deseado-de-todas-las-gentes-guia.pdf',
-        format: 'PDF',
-      },
-      {
         id: 'camino-guia',
-        title: 'El Camino a Cristo — Guía de lectura',
-        description: 'Plan de 7 días con preguntas de aplicación.',
+        title: 'El Camino a Cristo',
+        description: 'Guía de lectura · plan de 7 días.',
         href: '/recursos/libros/el-camino-a-cristo-guia.pdf',
         format: 'PDF',
       },
       {
+        id: 'deseado-guia',
+        title: 'El Deseado de Todas las Gentes',
+        description: 'Guía de lectura · 5 semanas sobre la vida de Jesús.',
+        href: '/recursos/libros/el-deseado-de-todas-las-gentes-guia.pdf',
+        format: 'PDF',
+      },
+      {
+        id: 'conflicto-guia',
+        title: 'El Conflicto de los Siglos',
+        description: 'Guía de lectura · plan temático.',
+        href: '/recursos/libros/el-conflicto-de-los-siglos-guia.pdf',
+        format: 'PDF',
+      },
+      {
         id: 'egw-writings',
-        title: 'Leer libros completos (EGW Writings)',
-        description: 'Biblioteca gratuita oficial de Elena G. de White.',
+        title: 'Biblioteca EGW Writings',
+        description: 'Leer los libros completos en el sitio oficial.',
         href: 'https://egwwritings.org/?lang=es',
         format: 'LINK',
         external: true,
       },
     ],
   },
-  {
-    id: 'guias',
-    title: 'Guías de Estudio',
-    description: 'Cuestionarios y guías paso a paso para grupos de estudio.',
-    icon: '📝',
-    files: [
-      {
-        id: 'daniel',
-        title: 'Curso Daniel',
-        description: '5 lecciones con lecturas y preguntas.',
-        href: '/recursos/guias/curso-daniel.pdf',
-        format: 'PDF',
-      },
-      {
-        id: 'apocalipsis',
-        title: 'Curso Apocalipsis',
-        description: '6 lecciones centradas en Cristo y la esperanza.',
-        href: '/recursos/guias/curso-apocalipsis.pdf',
-        format: 'PDF',
-      },
-      {
-        id: 'fe-jesus',
-        title: 'La Fe de Jesús',
-        description: 'Justificación por la fe y obediencia en amor.',
-        href: '/recursos/guias/la-fe-de-jesus.pdf',
-        format: 'PDF',
-      },
-    ],
-  },
 ];
+
+export function totalResourceCount(): number {
+  return resourceCategories.reduce((n, c) => n + c.files.length, 0);
+}

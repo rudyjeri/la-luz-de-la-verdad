@@ -7,6 +7,7 @@ import Doctrinas from './pages/Doctrinas';
 import FeYCiencia from './pages/FeYCiencia';
 import Profecias from './pages/Profecias';
 import Recursos from './pages/Recursos';
+import Buscar from './pages/Buscar';
 import ArticleReader from './pages/ArticleReader';
 
 import CreacionEvolucion from './pages/subpages/CreacionEvolucion';
@@ -63,6 +64,7 @@ function App() {
                 <Route path="/articulo/:slug" element={<ArticleReader />} />
                 <Route path="/profecias" element={<Profecias />} />
                 <Route path="/recursos" element={<Recursos />} />
+                <Route path="/buscar" element={<Buscar />} />
                 <Route path="/creacion-evolucion" element={<CreacionEvolucion />} />
                 <Route path="/evidencias-diluvio" element={<EvidenciasDiluvio />} />
                 <Route path="/biblia-dinosaurios" element={<BibliaDinosaurios />} />

@@ -156,6 +156,34 @@
   transform: translateX(4px);
 }
 
+.nav__actions {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  flex-shrink: 0;
+}
+
+.nav__search {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  border-radius: 12px;
+  color: var(--primary);
+  background: rgba(15, 23, 42, 0.05);
+  transition: all 0.2s ease;
+}
+
+.nav__search:hover {
+  background: rgba(251, 191, 36, 0.2);
+  color: var(--accent-hover);
+}
+
+.nav__items--search-mobile {
+  display: none;
+}
+
 .nav__menu {
   display: none;
   background: var(--primary);
@@ -198,6 +226,16 @@
     max-width: min(68vw, 260px);
     object-fit: contain;
     object-position: left center;
+  }
+
+  .nav__items--search-mobile {
+    display: block;
+  }
+
+  .nav__search {
+    width: 44px;
+    height: 44px;
+    border-radius: 14px;
   }
 
   .nav__menu {

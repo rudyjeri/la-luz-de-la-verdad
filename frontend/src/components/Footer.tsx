@@ -12,6 +12,7 @@ const Footer = () => {
             <li><Link to="/fe-y-ciencia">Fe y Ciencia</Link></li>
             <li><Link to="/doctrinas">Doctrinas</Link></li>
             <li><Link to="/profecias">Profecías</Link></li>
+            <li><Link to="/buscar">Buscar</Link></li>
           </ul>
         </nav>
         <hr className="footer__divider" />

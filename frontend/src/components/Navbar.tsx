@@ -80,15 +80,27 @@ const Navbar = () => {
         <li className="nav__items">
           <Link to="/recursos" className="nav__links" onClick={closeMenu}>Recursos</Link>
         </li>
+
+        <li className="nav__items nav__items--search-mobile">
+          <Link to="/buscar" className="nav__links" onClick={closeMenu}>Buscar</Link>
+        </li>
       </ul>
 
-      <button className="nav__menu" onClick={toggleMenu} aria-label="Abrir menú">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-          <line x1="3" y1="12" x2="21" y2="12"></line>
-          <line x1="3" y1="6" x2="21" y2="6"></line>
-          <line x1="3" y1="18" x2="21" y2="18"></line>
-        </svg>
-      </button>
+      <div className="nav__actions">
+        <Link to="/buscar" className="nav__search" aria-label="Buscar artículos" onClick={closeMenu}>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+            <circle cx="11" cy="11" r="7" />
+            <line x1="16.65" y1="16.65" x2="21" y2="21" />
+          </svg>
+        </Link>
+        <button className="nav__menu" onClick={toggleMenu} aria-label="Abrir menú">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+            <line x1="3" y1="12" x2="21" y2="12"></line>
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <line x1="3" y1="18" x2="21" y2="18"></line>
+          </svg>
+        </button>
+      </div>
       </div>
     </nav>
   );

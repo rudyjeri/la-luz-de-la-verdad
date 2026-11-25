@@ -92,6 +92,44 @@
   padding: 3rem 5% 2rem;
 }
 
+.article-reader__key-verse {
+  margin: 0 0 2rem;
+  padding: 1.35rem 1.5rem;
+  border-radius: 1rem;
+  background: linear-gradient(135deg, rgba(251, 191, 36, 0.14), rgba(15, 23, 42, 0.04));
+  border: 1px solid rgba(217, 119, 6, 0.2);
+}
+
+.article-reader__key-verse-label {
+  display: inline-block;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #d97706;
+  margin-bottom: 0.75rem;
+}
+
+.article-reader__key-verse blockquote {
+  margin: 0;
+}
+
+.article-reader__key-verse p {
+  font-size: 1.12rem;
+  line-height: 1.65;
+  color: var(--primary);
+  font-style: italic;
+  margin: 0 0 0.55rem;
+}
+
+.article-reader__key-verse cite {
+  display: block;
+  font-style: normal;
+  font-weight: 800;
+  font-size: 0.9rem;
+  color: #b45309;
+}
+
 .article-reader__lead {
   font-size: 1.15rem;
   line-height: 1.7;

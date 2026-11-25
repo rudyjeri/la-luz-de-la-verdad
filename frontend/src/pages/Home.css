@@ -74,6 +74,7 @@
   letter-spacing: 0.05em;
   border-bottom: 2px solid var(--accent);
   padding-bottom: 4px;
+  text-decoration: none;
 }
 
 /* Tarjetas Pro */
@@ -90,6 +91,16 @@
   box-shadow: var(--shadow-sm);
   transition: all 0.3s ease;
   border: 1px solid rgba(0, 0, 0, 0.03);
+}
+
+.video-card__link {
+  display: block;
+  color: inherit;
+  text-decoration: none;
+}
+
+.video-card__link:hover h3 {
+  color: var(--accent, #d97706);
 }
 
 .video-card:hover {

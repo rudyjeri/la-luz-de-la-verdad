@@ -10,14 +10,23 @@ export interface ArticleSection {
   quote?: { text: string; ref?: string };
 }
 
+export interface KeyVerse {
+  text: string;
+  ref: string;
+}
+
 export interface FeCienciaArticle {
   slug: string;
   topic: FeCienciaTopic;
   title: string;
+  /** Título SEO (claro para buscadores); si falta, se usa title */
+  seoTitle?: string;
   description: string;
   image: string;
   tag: string;
   date: string;
+  /** Versículo clave del artículo (visible + meta) */
+  keyVerse: KeyVerse;
   sections: ArticleSection[];
 }
 
@@ -36,11 +45,16 @@ export const feCienciaArticles: FeCienciaArticle[] = [
     slug: 'creacion-seis-dias',
     topic: 'creacion-evolucion',
     title: 'La creación en seis días: ¿literal o simbólica?',
+    seoTitle: 'Creación en seis días: ¿literal o simbólica? — Génesis 1',
     description:
       'Examina cómo las leyes de la naturaleza, la complejidad del universo y las características biológicas son evidencia de un Creador.',
     image: '/images/criacionismo.jpg',
     tag: 'Fe y Ciencia',
     date: '05 Marzo 2025',
+    keyVerse: {
+      text: 'En el principio creó Dios los cielos y la tierra.',
+      ref: 'Génesis 1:1',
+    },
     sections: [
       {
         paragraphs: [
@@ -68,10 +82,15 @@ export const feCienciaArticles: FeCienciaArticle[] = [
     slug: 'complejidad-irreducible',
     topic: 'creacion-evolucion',
     title: 'Complejidad Irreducible: ¿Diseño o Azar?',
+    seoTitle: 'Complejidad irreducible: ¿diseño o azar? — Romanos 1:20',
     description: 'Un análisis de cómo los sistemas biológicos complejos apuntan a una inteligencia superior.',
     image: '/images/the-creator-chris-brazelton.jpg',
     tag: 'Ciencia',
     date: '12 Feb 2025',
+    keyVerse: {
+      text: 'Porque las cosas invisibles de él, su eterno poder y deidad, se hacen claramente visibles desde la creación del mundo, siendo entendidas por medio de las cosas hechas.',
+      ref: 'Romanos 1:20',
+    },
     sections: [
       {
         paragraphs: [
@@ -92,10 +111,15 @@ export const feCienciaArticles: FeCienciaArticle[] = [
     slug: 'registro-fosil-creacion',
     topic: 'creacion-evolucion',
     title: 'El Registro Fósil y la Creación',
+    seoTitle: 'El registro fósil y la creación — perspectiva bíblica',
     description: '¿Qué dicen realmente los fósiles sobre nuestros orígenes? Una perspectiva bíblica y científica.',
     image: '/images/f.elconfidencial.com_original_a1c_0ef_a20_a1c0efa203e3c23e63e7374c091d593c.jpg',
     tag: 'Arqueología',
     date: '20 Ene 2025',
+    keyVerse: {
+      text: 'Por tanto, como el pecado entró en el mundo por un hombre, y por el pecado la muerte, así la muerte pasó a todos los hombres.',
+      ref: 'Romanos 5:12',
+    },
     sections: [
       {
         paragraphs: [
@@ -116,11 +140,16 @@ export const feCienciaArticles: FeCienciaArticle[] = [
     slug: 'culturas-diluvio',
     topic: 'evidencias-diluvio',
     title: 'Más de 300 Culturas Recuerdan un Gran Diluvio',
+    seoTitle: 'Más de 300 culturas recuerdan un gran diluvio — Génesis 7',
     description:
       'Una exploración de cómo los relatos de inundaciones globales en diversas civilizaciones respaldan el registro bíblico.',
     image: '/images/antena-historia-podcast-diluvio-universal (1).jpg',
     tag: 'Historia',
     date: '02 Feb 2025',
+    keyVerse: {
+      text: 'Y las aguas prevalecieron en gran manera sobre la tierra, y cubrieron todos los montes altos que había debajo de todos los cielos.',
+      ref: 'Génesis 7:19',
+    },
     sections: [
       {
         paragraphs: [
@@ -141,10 +170,15 @@ export const feCienciaArticles: FeCienciaArticle[] = [
     slug: 'fosiles-cumbres',
     topic: 'evidencias-diluvio',
     title: 'Fósiles en las Cumbres: Evidencias Geológicas',
+    seoTitle: 'Fósiles marinos en las cumbres: evidencias del diluvio',
     description: '¿Por qué encontramos fósiles marinos en las montañas más altas del mundo? Un análisis del diluvio catastrófico.',
     image: '/images/f.elconfidencial.com_original_a1c_0ef_a20_a1c0efa203e3c23e63e7374c091d593c.jpg',
     tag: 'Geología',
     date: '15 Ene 2025',
+    keyVerse: {
+      text: 'Con el abismo, como con vestido, la cubriste; sobre los montes estaban las aguas.',
+      ref: 'Salmos 104:6',
+    },
     sections: [
       {
         paragraphs: [
@@ -165,10 +199,15 @@ export const feCienciaArticles: FeCienciaArticle[] = [
     slug: 'arca-noe',
     topic: 'evidencias-diluvio',
     title: 'El Arca de Noé: ¿Mito o Realidad?',
+    seoTitle: 'El arca de Noé: ¿mito o realidad histórica? — Génesis 6',
     description: 'Investigación sobre la factibilidad técnica y arqueológica de la embarcación descrita en el Génesis.',
     image: '/images/antena-historia-podcast-diluvio-universal.jpg',
     tag: 'Biblia',
     date: '10 Ene 2025',
+    keyVerse: {
+      text: 'Hazte un arca de madera de gofer; harás aposentos en el arca, y la calafatearás con brea por dentro y por fuera.',
+      ref: 'Génesis 6:14',
+    },
     sections: [
       {
         paragraphs: [
@@ -189,10 +228,15 @@ export const feCienciaArticles: FeCienciaArticle[] = [
     slug: 'dinosaurios-contemporaneos-hombre',
     topic: 'biblia-dinosaurios',
     title: '¿Fueron los dinosaurios contemporáneos del hombre?',
+    seoTitle: '¿Dinosaurios y humanos coexistieron? — Génesis 1',
     description: 'Investigamos si existen evidencias de que seres humanos y dinosaurios coexistieron en el pasado.',
     image: '/images/13dinosaur-superJumbo.jpg',
     tag: 'Paleontología',
     date: '05 Marzo 2025',
+    keyVerse: {
+      text: 'Luego dijo Dios: Produzca la tierra seres vivientes según su género, bestias y serpientes y animales de la tierra según su especie. Y fue así.',
+      ref: 'Génesis 1:24',
+    },
     sections: [
       {
         paragraphs: [
@@ -213,10 +257,15 @@ export const feCienciaArticles: FeCienciaArticle[] = [
     slug: 'behemot-leviatan',
     topic: 'biblia-dinosaurios',
     title: 'El misterio del Behemot y el Leviatán',
+    seoTitle: 'Behemot y Leviatán en Job: ¿dinosaurios en la Biblia?',
     description: '¿Podrían las criaturas descritas en el libro de Job ser dinosaurios? Un análisis exegético y científico.',
     image: '/images/los-sauropodos-eran-los-dinosaurios-mas-longevos-se-estima-que-podian-vivir-de-50-a-100-anos_01191acc_230106131643_1280x800.jpg',
     tag: 'Estudio Bíblico',
     date: '22 Feb 2025',
+    keyVerse: {
+      text: 'Ahí está el behemot: yo lo creé, lo mismo que a ti. Come hierba, como el buey.',
+      ref: 'Job 40:15',
+    },
     sections: [
       {
         paragraphs: [
@@ -246,10 +295,15 @@ export const feCienciaArticles: FeCienciaArticle[] = [
     slug: 'extincion-dinosaurios',
     topic: 'biblia-dinosaurios',
     title: '¿Por qué se extinguieron realmente los dinosaurios?',
+    seoTitle: 'Extinción de los dinosaurios y el diluvio bíblico',
     description: 'Analizamos las teorías de extinción desde una perspectiva que armoniza la ciencia y el Diluvio bíblico.',
     image: '/images/asteroid-killing-dinosaur.jpg',
     tag: 'Ciencia',
     date: '10 Feb 2025',
+    keyVerse: {
+      text: 'Y murió toda carne que se mueve sobre la tierra, así aves como ganados, y bestias, y todo reptil que se arrastra sobre la tierra, y todo hombre.',
+      ref: 'Génesis 7:21',
+    },
     sections: [
       {
         paragraphs: [
@@ -270,11 +324,16 @@ export const feCienciaArticles: FeCienciaArticle[] = [
     slug: 'arqueologia-piedras-claman',
     topic: 'historicidad-biblia',
     title: 'Arqueología: Piedras que claman',
+    seoTitle: 'Arqueología bíblica: piedras que claman — evidencia histórica',
     description:
       'Descubrimientos arqueológicos que confirman la existencia de personajes y lugares mencionados en la Biblia.',
     image: '/images/cnne-1394633-oldest-bible-auction.jpeg',
     tag: 'Arqueología',
     date: '01 Marzo 2025',
+    keyVerse: {
+      text: 'Si estos callaran, las piedras clamarían.',
+      ref: 'Lucas 19:40',
+    },
     sections: [
       {
         paragraphs: [
@@ -295,10 +354,15 @@ export const feCienciaArticles: FeCienciaArticle[] = [
     slug: 'canon-biblico',
     topic: 'historicidad-biblia',
     title: 'El canon bíblico: ¿Cómo nos llegó la Biblia?',
+    seoTitle: 'Cómo se formó el canon bíblico y se preservó la Biblia',
     description: 'La historia de la preservación de los manuscritos y la formación del canon de las Escrituras.',
     image: '/images/bibliaabertapequena.jpg',
     tag: 'Historia',
     date: '15 Feb 2025',
+    keyVerse: {
+      text: 'Toda la Escritura es inspirada por Dios, y útil para enseñar, para redargüir, para corregir, para instruir en justicia.',
+      ref: '2 Timoteo 3:16',
+    },
     sections: [
       {
         paragraphs: [
@@ -323,4 +387,38 @@ export function getArticleBySlug(slug: string): FeCienciaArticle | undefined {
 
 export function getArticlesByTopic(topic: FeCienciaTopic): FeCienciaArticle[] {
   return feCienciaArticles.filter((a) => a.topic === topic);
+}
+
+const MONTHS: Record<string, number> = {
+  ene: 0, enero: 0,
+  feb: 1, febrero: 1,
+  mar: 2, marzo: 2,
+  abr: 3, abril: 3,
+  may: 4, mayo: 4,
+  jun: 5, junio: 5,
+  jul: 6, julio: 6,
+  ago: 7, agosto: 7,
+  sep: 8, sept: 8, septiembre: 8,
+  oct: 9, octubre: 9,
+  nov: 10, noviembre: 10,
+  dic: 11, diciembre: 11,
+};
+
+/** Parsea fechas tipo "05 Marzo 2025" / "12 Feb 2025" a timestamp (ms). */
+export function parseArticleDate(date: string): number {
+  const m = date.trim().match(/^(\d{1,2})\s+([A-Za-zÁÉÍÓÚáéíóúüÜñÑ.]+)\s+(\d{4})$/u);
+  if (!m) return 0;
+  const day = Number(m[1]);
+  const monthKey = m[2].replace(/\./g, '').toLowerCase().normalize('NFD').replace(/\p{M}/gu, '');
+  const year = Number(m[3]);
+  const month = MONTHS[monthKey];
+  if (month === undefined || !day || !year) return 0;
+  return Date.UTC(year, month, day);
+}
+
+/** Artículos estáticos más recientes primero. */
+export function getRecentArticles(limit = 4): FeCienciaArticle[] {
+  return [...feCienciaArticles]
+    .sort((a, b) => parseArticleDate(b.date) - parseArticleDate(a.date))
+    .slice(0, limit);
 }

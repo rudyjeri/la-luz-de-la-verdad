@@ -1,6 +1,7 @@
-import { FormEvent, useEffect, useState } from 'react';
+import { useEffect, useState, type FormEvent } from 'react';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import { api } from '../../lib/api';
+import { compressImageFile } from '../../lib/compressImage';
 
 const TOPICS = [
   { value: 'general', label: 'General' },
@@ -27,6 +28,8 @@ export default function AdminEditor() {
   const [ok, setOk] = useState('');
   const [saving, setSaving] = useState(false);
   const [loading, setLoading] = useState(!isNew);
+  const [uploading, setUploading] = useState(false);
+  const [uploadInfo, setUploadInfo] = useState('');
 
   useEffect(() => {
     if (isNew) return;
@@ -49,6 +52,26 @@ export default function AdminEditor() {
       }
     })();
   }, [id, isNew]);
+
+  async function onPickImage(file: File | null) {
+    if (!file) return;
+    setUploading(true);
+    setError('');
+    setUploadInfo('');
+    try {
+      const compressed = await compressImageFile(file);
+      const res = await api.uploadImage(compressed);
+      // En front Vite las subidas también se espejan a /uploads
+      const url = res.url.startsWith('http') ? res.url : res.url;
+      setImage(url);
+      const kb = Math.round((res.bytes || compressed.size) / 1024);
+      setUploadInfo(`Optimizada automáticamente · ${kb} KB · ${res.width || '?'}×${res.height || '?'}`);
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'No se pudo subir la imagen');
+    } finally {
+      setUploading(false);
+    }
+  }
 
   async function onSubmit(e: FormEvent) {
     e.preventDefault();
@@ -138,14 +161,30 @@ export default function AdminEditor() {
               <input value={tag} onChange={(e) => setTag(e.target.value)} />
             </label>
             <label>
-              Imagen
-              <span className="admin-hint">URL o ruta /images/…</span>
+              Imagen (URL)
+              <span className="admin-hint">O sube un archivo: se optimiza sola (JPEG ≤1600px)</span>
               <input
                 value={image}
                 onChange={(e) => setImage(e.target.value)}
-                placeholder="/images/hero-bg.png"
+                placeholder="/images/hero-bg.jpg"
               />
             </label>
+          </div>
+          <div className="admin-upload">
+            <label className="admin-btn admin-btn--secondary admin-upload__btn">
+              {uploading ? 'Optimizando…' : 'Subir imagen'}
+              <input
+                type="file"
+                accept="image/jpeg,image/png,image/webp,image/gif"
+                hidden
+                disabled={uploading}
+                onChange={(e) => onPickImage(e.target.files?.[0] || null)}
+              />
+            </label>
+            {image && (
+              <img src={image} alt="Vista previa" className="admin-upload__preview" />
+            )}
+            {uploadInfo && <p className="admin-hint">{uploadInfo}</p>}
           </div>
           <label>
             Contenido

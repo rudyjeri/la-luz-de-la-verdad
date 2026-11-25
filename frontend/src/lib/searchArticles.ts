@@ -128,7 +128,7 @@ export function searchCmsArticles(articles: CmsArticle[], query: string, limit =
       slug: a.slug,
       title: a.title,
       description: a.description || '',
-      image: a.image || '/images/hero-bg.png',
+      image: a.image || '/images/hero-bg.jpg',
       tag: a.tag || 'Artículo',
       date: a.published_at || a.updated_at || '',
       topicLabel: a.topic || 'CMS',

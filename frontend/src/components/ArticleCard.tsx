@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import type { FeCienciaArticle } from '../data/feCienciaArticles';
+import LazyImg from './LazyImg';
 
 interface ArticleCardProps {
   article: FeCienciaArticle;
@@ -8,7 +9,7 @@ interface ArticleCardProps {
 const ArticleCard = ({ article }: ArticleCardProps) => {
   return (
     <Link to={`/articulo/${article.slug}`} className="article-card article-card--link">
-      <img src={article.image} alt={article.title} className="article-card__image" />
+      <LazyImg src={article.image} alt={article.title} className="article-card__image" />
       <div className="article-card__content">
         <h3 className="article-card__title">{article.title}</h3>
         <p className="article-card__description">{article.description}</p>

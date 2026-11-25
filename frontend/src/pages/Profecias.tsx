@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import LazyImg from '../components/LazyImg';
 import './Profecias.css';
 
 const Profecias = () => {
@@ -12,7 +13,7 @@ const Profecias = () => {
   const topics = [
     { title: 'Profecías de Daniel', image: '/images/Daniel-7-Four-Beasts.jpg', link: '/profecias-daniel' },
     { title: 'Profecías del Apocalipsis', image: '/images/apocalipsis (1).jpg', link: '/profecias-apocalipsis' },
-    { title: 'Los Eventos Finales', image: '/images/zarandeo.png', link: '/eventos-finales' },
+    { title: 'Los Eventos Finales', image: '/images/zarandeo.jpg', link: '/eventos-finales' },
     { title: 'El Juicio Investigador', image: '/images/Jesus_sumosacerdote.jpg', link: '/juicio-investigador' },
   ];
 
@@ -43,7 +44,7 @@ const Profecias = () => {
               {topics.map((topic, index) => (
                 <div key={index} className="topic-card">
                   <Link to={topic.link}>
-                    <img src={topic.image} alt={topic.title} className="topic-card__image" />
+                    <LazyImg src={topic.image} alt={topic.title} className="topic-card__image" />
                     <div className="topic-card__overlay">
                       <h3 className="topic-card__title">{topic.title}</h3>
                     </div>

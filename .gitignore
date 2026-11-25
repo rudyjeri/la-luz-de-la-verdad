@@ -6,6 +6,10 @@ frontend/node_modules/
 api/data/*.sqlite
 api/data/*.sqlite-*
 api/secrets.php
+api/uploads/*
+!api/uploads/.gitkeep
+frontend/public/uploads/*
+!frontend/public/uploads/.gitkeep
 
 # Build caches
 .DS_Store

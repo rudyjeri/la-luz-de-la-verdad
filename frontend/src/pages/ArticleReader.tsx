@@ -3,6 +3,7 @@ import { Link, useParams } from 'react-router-dom';
 import { getArticleBySlug, topicMeta, FeCienciaTopic, KeyVerse } from '../data/feCienciaArticles';
 import { api, CmsArticle } from '../lib/api';
 import { usePageSeo } from '../hooks/usePageSeo';
+import ShareStudy from '../components/ShareStudy';
 import './ArticleReader.css';
 
 type ViewArticle = {
@@ -62,7 +63,7 @@ const ArticleReader = () => {
             title: a.title,
             seoTitle: a.title,
             description: a.description,
-            image: a.image || '/images/hero-bg.png',
+            image: a.image || '/images/hero-bg.jpg',
             tag: a.tag,
             date: a.published_at || a.updated_at || '',
             topic: a.topic,
@@ -201,6 +202,11 @@ const ArticleReader = () => {
             </section>
           ))
         )}
+
+        <ShareStudy
+          title={article.title}
+          keyVerseRef={article.keyVerse?.ref}
+        />
 
         <footer className="article-reader__footer">
           <Link to={topic.path} className="article-reader__back">

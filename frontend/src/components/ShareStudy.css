@@ -1,0 +1,81 @@
+.share-study {
+  margin: 2.5rem 0 0;
+  padding: 1.35rem 1.4rem;
+  border-radius: 1.1rem;
+  background: linear-gradient(135deg, rgba(15, 23, 42, 0.96), rgba(30, 41, 59, 0.92));
+  color: #fff;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.1rem;
+}
+
+.share-study__text h3 {
+  margin: 0 0 0.25rem;
+  font-size: 1.15rem;
+  letter-spacing: -0.02em;
+}
+
+.share-study__text p {
+  margin: 0;
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.78);
+}
+
+.share-study__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem;
+}
+
+.share-study__btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 42px;
+  padding: 0.55rem 1rem;
+  border-radius: 999px;
+  border: none;
+  font: inherit;
+  font-size: 0.88rem;
+  font-weight: 700;
+  text-decoration: none;
+  cursor: pointer;
+  transition: transform 0.15s ease, filter 0.15s ease;
+}
+
+.share-study__btn:hover {
+  transform: translateY(-1px);
+  filter: brightness(1.05);
+}
+
+.share-study__btn--wa {
+  background: #25d366;
+  color: #053819;
+}
+
+.share-study__btn--fb {
+  background: #1877f2;
+  color: #fff;
+}
+
+.share-study__btn--copy {
+  background: rgba(255, 255, 255, 0.12);
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.22);
+}
+
+@media (max-width: 640px) {
+  .share-study {
+    align-items: stretch;
+  }
+
+  .share-study__actions {
+    width: 100%;
+  }
+
+  .share-study__btn {
+    flex: 1 1 calc(50% - 0.55rem);
+  }
+}

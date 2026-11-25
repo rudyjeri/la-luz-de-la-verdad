@@ -24,10 +24,12 @@ const Navbar = () => {
       <div className="nav__container">
         <div className="nav__logo">
         <Link to="/" onClick={closeMenu}>
-          <img 
-            src="/images/la-luz-de-la-verdad-high-resolution-logo-transparent (23).png" 
-            alt="La Luz de la Verdad" 
-            className="nav__logo-img" 
+          <img
+            src="/images/la-luz-de-la-verdad-high-resolution-logo-transparent (23).png"
+            alt="La Luz de la Verdad"
+            className="nav__logo-img"
+            loading="eager"
+            decoding="async"
           />
         </Link>
       </div>

@@ -1,11 +1,12 @@
-import '../TopicDetail.css';
+﻿import '../TopicDetail.css';
+import LazyImg from '../../components/LazyImg';
 
 const EventosFinales = () => {
   const articles = [
     {
       title: 'El Zarandeo en el pueblo de Dios',
       description: '¿Qué es el zarandeo y cómo podemos prepararnos para permanecer firmes?',
-      image: '/images/zarandeo.png',
+      image: '/images/zarandeo.jpg',
       tag: 'Eventos Finales',
       date: '12 Marzo 2025'
     },
@@ -35,7 +36,7 @@ const EventosFinales = () => {
           <div className="articles-grid">
             {articles.map((article, index) => (
               <div key={index} className="article-card">
-                <img src={article.image} alt={article.title} className="article-card__image" />
+                <LazyImg src={article.image} alt={article.title} className="article-card__image" />
                 <div className="article-card__content">
                   <h3 className="article-card__title">{article.title}</h3>
                   <p className="article-card__description">{article.description}</p>

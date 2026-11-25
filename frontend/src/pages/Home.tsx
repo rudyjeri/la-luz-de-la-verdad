@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
+import LazyImg from '../components/LazyImg';
 import { getRecentArticles } from '../data/feCienciaArticles';
 import { usePageSeo } from '../hooks/usePageSeo';
 import { api } from '../lib/api';
@@ -35,7 +36,7 @@ const Home = () => {
       title: 'La Luz de la Verdad | Estudios bíblicos, fe y ciencia',
       description:
         'Ministerio de estudio bíblico y apologética. Artículos sobre creación, diluvio, doctrinas y profecía. «La tierra fue alumbrada con su gloria» (Apocalipsis 18:1).',
-      image: '/images/hero-bg.png',
+      image: '/images/hero-bg.jpg',
       type: 'website' as const,
     }),
     [],
@@ -58,7 +59,7 @@ const Home = () => {
             slug: a.slug,
             title: a.title,
             category: a.tag || formatCmsDate(a.published_at) || 'Artículo',
-            image: a.image || '/images/hero-bg.png',
+            image: a.image || '/images/hero-bg.jpg',
           }));
         if (!cancelled && published.length > 0) {
           setArticles(published);
@@ -96,7 +97,7 @@ const Home = () => {
                 <div key={article.slug} className="video-card">
                   <Link to={`/articulo/${article.slug}`} className="video-card__link">
                     <div className="thumbnail">
-                      <img src={article.image} alt={article.title} />
+                      <LazyImg src={article.image} alt={article.title} />
                     </div>
                     <h3>{article.title}</h3>
                     <p>{article.category}</p>
@@ -113,7 +114,7 @@ const Home = () => {
             <p>Somos un ministerio dedicado al estudio bíblico profundo y la apologética, buscando compartir
                la luz de las Escrituras en estos tiempos de confusión y oscuridad espiritual.</p>
           </div>
-          <img src="/images/buddha-bowl-dish-with-vegetables-and-legumes-top-view.webp" alt="¿Quiénes somos?" />
+          <LazyImg src="/images/buddha-bowl-dish-with-vegetables-and-legumes-top-view.webp" alt="¿Quiénes somos?" />
         </section>
 
         <section className="info-block reverse">
@@ -122,7 +123,7 @@ const Home = () => {
             <p>Brindar recursos teológicos de alta calidad, organizados por temas, que faciliten el estudio
                personal y compartido de la Palabra de Dios para todos aquellos que deseen profundizar.</p>
           </div>
-          <img src="/images/adventistasjpeg.webp" alt="Nuestra misión" />
+          <LazyImg src="/images/adventistasjpeg.webp" alt="Nuestra misión" />
         </section>
 
         <section className="info-block">
@@ -131,7 +132,7 @@ const Home = () => {
             <p>Ser un referente confiable y accesible de enseñanza bíblica, ayudando a cada creyente a
                estar preparado para compartir su fe con sabiduría, convicción y amor cristiano.</p>
           </div>
-          <img src="/images/antena-historia-podcast-diluvio-universal.jpg" alt="Nuestra visión" />
+          <LazyImg src="/images/antena-historia-podcast-diluvio-universal.jpg" alt="Nuestra visión" />
         </section>
       </main>
     </div>

@@ -86,4 +86,21 @@ export const api = {
   deleteArticle(id: number) {
     return request<{ ok: boolean }>(`/articles/${id}`, { method: 'DELETE' });
   },
+  async uploadImage(file: File) {
+    const headers = new Headers();
+    const token = getToken();
+    if (token) headers.set('Authorization', `Bearer ${token}`);
+    const body = new FormData();
+    body.append('image', file);
+    const res = await fetch(`${API_BASE}/uploads/image`, {
+      method: 'POST',
+      headers,
+      body,
+    });
+    const data = await res.json().catch(() => ({}));
+    if (!res.ok) {
+      throw new Error(data.error || `Error ${res.status}`);
+    }
+    return data as { url: string; bytes: number; width?: number; height?: number };
+  },
 };

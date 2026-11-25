@@ -1,4 +1,5 @@
-import '../TopicDetail.css';
+﻿import '../TopicDetail.css';
+import LazyImg from '../../components/LazyImg';
 
 const JustificacionFe = () => {
   const articles = [
@@ -19,7 +20,7 @@ const JustificacionFe = () => {
     {
       title: 'La justicia imputada vs impartida',
       description: 'Entendiendo los términos bíblicos que definen nuestra salvación en Cristo Jesús.',
-      image: '/images/justi1888.png',
+      image: '/images/justi1888.jpg',
       tag: 'Doctrina',
       date: '10 Feb 2025'
     }
@@ -43,7 +44,7 @@ const JustificacionFe = () => {
           <div className="articles-grid">
             {articles.map((article, index) => (
               <div key={index} className="article-card">
-                <img src={article.image} alt={article.title} className="article-card__image" />
+                <LazyImg src={article.image} alt={article.title} className="article-card__image" />
                 <div className="article-card__content">
                   <h3 className="article-card__title">{article.title}</h3>
                   <p className="article-card__description">{article.description}</p>

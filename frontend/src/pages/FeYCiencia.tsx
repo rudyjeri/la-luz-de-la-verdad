@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import LazyImg from '../components/LazyImg';
 import './FeYCiencia.css';
 
 const FeYCiencia = () => {
@@ -44,7 +45,7 @@ const FeYCiencia = () => {
               {topics.map((topic, index) => (
                 <div key={index} className="topic-card">
                   <Link to={topic.link}>
-                    <img src={topic.image} alt={topic.title} className="topic-card__image" />
+                    <LazyImg src={topic.image} alt={topic.title} className="topic-card__image" />
                     <div className="topic-card__overlay">
                       <h3 className="topic-card__title">{topic.title}</h3>
                     </div>

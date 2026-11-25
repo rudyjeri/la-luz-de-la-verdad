@@ -2,6 +2,7 @@
 declare(strict_types=1);
 
 require __DIR__ . '/bootstrap.php';
+require __DIR__ . '/image_optimize.php';
 cors_headers();
 
 $method = $_SERVER['REQUEST_METHOD'] ?? 'GET';
@@ -198,6 +199,61 @@ try {
         $stmt = db()->prepare('DELETE FROM articles WHERE id = ?');
         $stmt->execute([$id]);
         json_out(['ok' => true]);
+    }
+
+    // Subida de imagen (admin) — siempre se optimiza (JPEG ≤1600px)
+    if ($method === 'POST' && $path === '/uploads/image') {
+        require_auth();
+        if (empty($_FILES['image']) || !is_array($_FILES['image'])) {
+            json_out(['error' => 'Envía el campo image (multipart/form-data)'], 422);
+        }
+        $file = $_FILES['image'];
+        if (($file['error'] ?? UPLOAD_ERR_NO_FILE) !== UPLOAD_ERR_OK) {
+            json_out(['error' => 'Error al subir el archivo'], 422);
+        }
+        $mime = (string) ($file['type'] ?? '');
+        $allowed = ['image/jpeg', 'image/png', 'image/webp', 'image/gif'];
+        if ($mime !== '' && !in_array($mime, $allowed, true)) {
+            json_out(['error' => 'Solo se permiten JPG, PNG, WebP o GIF'], 422);
+        }
+        $destDir = __DIR__ . '/uploads';
+        $result = optimize_uploaded_image(
+            (string) $file['tmp_name'],
+            (string) ($file['name'] ?? 'imagen.jpg'),
+            $destDir,
+            '/uploads'
+        );
+        if (!$result['ok']) {
+            json_out(['error' => $result['error'] ?? 'No se pudo optimizar'], 422);
+        }
+        json_out([
+            'url' => $result['url'],
+            'bytes' => $result['bytes'],
+            'width' => $result['width'] ?? null,
+            'height' => $result['height'] ?? null,
+        ]);
+    }
+
+    // Servir uploads optimizados
+    if ($method === 'GET' && preg_match('#^/uploads/([^/]+)$#', $path, $m)) {
+        $name = basename($m[1]);
+        $file = __DIR__ . '/uploads/' . $name;
+        if (!is_file($file)) {
+            json_out(['error' => 'Archivo no encontrado'], 404);
+        }
+        $ext = strtolower(pathinfo($file, PATHINFO_EXTENSION));
+        $types = [
+            'jpg' => 'image/jpeg',
+            'jpeg' => 'image/jpeg',
+            'png' => 'image/png',
+            'webp' => 'image/webp',
+            'gif' => 'image/gif',
+        ];
+        header('Content-Type: ' . ($types[$ext] ?? 'application/octet-stream'));
+        header('Cache-Control: public, max-age=604800');
+        header('Content-Length: ' . (string) filesize($file));
+        readfile($file);
+        exit;
     }
 
     // Admin lista todos

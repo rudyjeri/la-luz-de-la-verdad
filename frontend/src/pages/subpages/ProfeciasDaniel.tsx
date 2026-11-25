@@ -1,4 +1,5 @@
-import '../TopicDetail.css';
+﻿import '../TopicDetail.css';
+import LazyImg from '../../components/LazyImg';
 
 const ProfeciasDaniel = () => {
   const articles = [
@@ -35,7 +36,7 @@ const ProfeciasDaniel = () => {
           <div className="articles-grid">
             {articles.map((article, index) => (
               <div key={index} className="article-card">
-                <img src={article.image} alt={article.title} className="article-card__image" />
+                <LazyImg src={article.image} alt={article.title} className="article-card__image" />
                 <div className="article-card__content">
                   <h3 className="article-card__title">{article.title}</h3>
                   <p className="article-card__description">{article.description}</p>
